@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 
 const usersRouter = require("./routes/users");
+const authRouter = require("./routes/auth");
 
 const app = express();
 const PORT = 5000;
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // User API
 app.use("/api/users", usersRouter);
+app.use("/api/auth", authRouter);
 
 // Home/test route
 app.get("/", (req, res) => {

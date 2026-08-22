@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+const authenticateToken = require("../middleware/auth");
 const bcrypt = require("bcrypt");
+
 const { PrismaClient } = require("@prisma/client");
 const { PrismaPg } = require("@prisma/adapter-pg");
 
@@ -12,8 +14,8 @@ const prisma = new PrismaClient({
 });
 
 // GET /api/users
-// Get all users
-router.get("/", async (req, res) => {
+// Get all users - protected route
+router.get("/", authenticateToken, async (req, res) => {
   try {
     const users = await prisma.user.findMany({
       select: {
