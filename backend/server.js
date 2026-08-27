@@ -12,7 +12,9 @@ const calendarRouter = require("./routes/calendar");
 const leaveBalanceRoutes = require("./routes/leaveBalances");
 
 const app = express();
-const PORT = 5000;
+
+// Use Render's PORT in production, 5000 locally
+const PORT = process.env.PORT || 5000;
 
 // =========================================
 // MIDDLEWARE
@@ -31,10 +33,7 @@ app.use("/api/leave-types", leaveTypesRouter);
 app.use("/api/leave-requests", leaveRequestsRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/calendar", calendarRouter);
-app.use(
-  "/api/leave-balances",
-  leaveBalanceRoutes
-);
+app.use("/api/leave-balances", leaveBalanceRoutes);
 
 // =========================================
 // HOME / TEST ROUTE
@@ -50,8 +49,8 @@ app.get("/", (req, res) => {
 // START SERVER
 // =========================================
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(
-    `Backend server running on http://localhost:${PORT}`
+    `Backend server running on http://0.0.0.0:${PORT}`
   );
 });
