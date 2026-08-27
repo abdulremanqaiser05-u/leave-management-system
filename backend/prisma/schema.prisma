@@ -7,32 +7,49 @@ datasource db {
 }
 
 model User {
-  id            Int            @id @default(autoincrement())
-  name          String
-  email         String         @unique
-  password      String
-  role          String         @default("EMPLOYEE")
-  createdAt     DateTime       @default(now())
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("EMPLOYEE")
+  createdAt DateTime @default(now())
+
   leaveRequests LeaveRequest[]
+  leaveBalances EmployeeLeaveBalance[]
 }
 
 model LeaveType {
-  id            Int            @id @default(autoincrement())
-  name          String
-  totalDays     Int
-  createdAt     DateTime       @default(now())
-  leaveRequests LeaveRequest[]
+  id        Int      @id @default(autoincrement())
+  name      String
+  totalDays Int
+  createdAt DateTime @default(now())
+
+  leaveRequests    LeaveRequest[]
+  employeeBalances EmployeeLeaveBalance[]
+}
+
+model EmployeeLeaveBalance {
+  id          Int @id @default(autoincrement())
+  userId      Int
+  leaveTypeId Int
+  entitlement Int
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  leaveType LeaveType @relation(fields: [leaveTypeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, leaveTypeId])
 }
 
 model LeaveRequest {
-  id          Int       @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   startDate   DateTime
   endDate     DateTime
   reason      String?
-  status      String    @default("PENDING")
-  createdAt   DateTime  @default(now())
+  status      String   @default("PENDING")
+  createdAt   DateTime @default(now())
   userId      Int
   leaveTypeId Int
-  leaveType   LeaveType @relation(fields: [leaveTypeId], references: [id])
-  user        User      @relation(fields: [userId], references: [id])
+
+  leaveType LeaveType @relation(fields: [leaveTypeId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
 }

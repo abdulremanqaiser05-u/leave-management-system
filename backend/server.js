@@ -5,26 +5,53 @@ const cors = require("cors");
 
 const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
+const leaveTypesRouter = require("./routes/leaveTypes");
+const leaveRequestsRouter = require("./routes/leaveRequests");
+const adminRouter = require("./routes/admin");
+const calendarRouter = require("./routes/calendar");
+const leaveBalanceRoutes = require("./routes/leaveBalances");
 
 const app = express();
 const PORT = 5000;
 
-// Middleware
+// =========================================
+// MIDDLEWARE
+// =========================================
+
 app.use(cors());
 app.use(express.json());
 
-// User API
+// =========================================
+// API ROUTES
+// =========================================
+
 app.use("/api/users", usersRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/leave-types", leaveTypesRouter);
+app.use("/api/leave-requests", leaveRequestsRouter);
+app.use("/api/admin", adminRouter);
+app.use("/api/calendar", calendarRouter);
+app.use(
+  "/api/leave-balances",
+  leaveBalanceRoutes
+);
 
-// Home/test route
+// =========================================
+// HOME / TEST ROUTE
+// =========================================
+
 app.get("/", (req, res) => {
   res.json({
     message: "Leave Management System API is running",
   });
 });
 
-// Start server
+// =========================================
+// START SERVER
+// =========================================
+
 app.listen(PORT, () => {
-  console.log(`Backend server running on http://localhost:${PORT}`);
+  console.log(
+    `Backend server running on http://localhost:${PORT}`
+  );
 });
