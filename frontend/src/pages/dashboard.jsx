@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import API_URL from "../api";
 function Dashboard({ user }) {
   const [requests, setRequests] = useState([]);
   const [balance, setBalance] = useState(null);
@@ -38,7 +38,7 @@ function Dashboard({ user }) {
         // =====================================================
 
         const balanceResponse = await fetch(
-          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests/balance",
+          `${API_URL}/api/leave-requests/balance`,
           {
             method: "GET",
             headers,
@@ -64,7 +64,7 @@ function Dashboard({ user }) {
         // =====================================================
 
         const requestsResponse = await fetch(
-          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests",
+          `${API_URL}/api/leave-requests`,
           {
             method: "GET",
             headers,
@@ -90,7 +90,7 @@ function Dashboard({ user }) {
         // =====================================================
 
         const teamResponse = await fetch(
-          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/users",
+          `${API_URL}/api/users`,
           {
             method: "GET",
             headers,

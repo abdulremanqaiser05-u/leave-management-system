@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import API_URL from "../api";
 function Calendar() {
   const [month, setMonth] = useState(7); // August
   const [year, setYear] = useState(2026);
@@ -38,7 +38,7 @@ function Calendar() {
         }
 
         const response = await fetch(
-          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/calendar",
+          `${API_URL}/api/calendar`,
           {
             method: "GET",
             headers: {

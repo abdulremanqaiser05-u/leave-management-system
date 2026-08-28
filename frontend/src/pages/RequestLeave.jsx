@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import API_URL from "../api";
 function RequestLeave() {
   const [leaveTypes, setLeaveTypes] = useState([]);
 
@@ -36,7 +36,7 @@ const [endDate, setEndDate] = useState(null);
         }
 
         const response = await fetch(
-          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-types",
+          `${API_URL}/api/leave-types`,
           {
             method: "GET",
             headers: {
@@ -242,7 +242,7 @@ const [endDate, setEndDate] = useState(null);
       }
 
       const response = await fetch(
-        "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests",
+        `${API_URL}/api/leave-requests`,
         {
           method: "POST",
 

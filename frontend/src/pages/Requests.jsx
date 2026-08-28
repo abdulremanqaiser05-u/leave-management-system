@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import API_URL from "../api";
 function Requests() {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -67,7 +67,7 @@ function Requests() {
       }
 
       const response = await fetch(
-        "https://ruin-sorrowful-hippopotamus.abasthan.app/api/admin/leave-requests",
+        `${API_URL}/api/admin/leave-requests`,
         {
           method: "GET",
           headers: {
@@ -131,7 +131,7 @@ function Requests() {
       }
 
       const response = await fetch(
-        `https://ruin-sorrowful-hippopotamus.abasthan.app/api/admin/leave-requests/${id}/${action}`,
+        `${API_URL}/api/admin/leave-requests/${id}/${action}`,
         {
           method: "PATCH",
           headers: {

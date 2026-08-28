@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import API_URL from "../api";
 function Settings() {
   const [settings, setSettings] = useState({
     name: "",
@@ -109,7 +109,7 @@ function Settings() {
       // ---------------------------------------
 
       const response = await fetch(
-        `https://ruin-sorrowful-hippopotamus.abasthan.app/api/users/${user.id}`,
+        `${API_URL}/api/users/${user.id}`,
         {
           method: "PATCH",
 

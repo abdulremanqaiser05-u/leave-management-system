@@ -1,5 +1,5 @@
 import "./App.css";
-
+import API_URL from "./api";
 import {
   Routes,
   Route,
@@ -72,16 +72,16 @@ function Dashboard({ user }) {
              GET EMPLOYEE BALANCE
           ========================================= */
 
-          const balanceResponse =
-            await fetch(
-              "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests/balance",
-              {
-                headers: {
-                  Authorization:
-                    `Bearer ${token}`,
-                },
-              }
-            );
+         const balanceResponse =
+  await fetch(
+    `${API_URL}/api/leave-requests/balance`,
+    {
+      headers: {
+        Authorization:
+          `Bearer ${token}`,
+      },
+    }
+  );
 
           const balanceData =
             await balanceResponse.json();
@@ -137,7 +137,7 @@ function Dashboard({ user }) {
 
           const requestsResponse =
             await fetch(
-              "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests",
+              `${API_URL}/api/leave-requests`,
               {
                 headers: {
                   Authorization:
@@ -1185,7 +1185,7 @@ const [notifications, setNotifications] =
         }
 
         const response = await fetch(
-          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests",
+          `${API_URL}/api/notifications`,
           {
             headers: {
               Authorization: `Bearer ${authToken}`,

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import API_URL from "../api";
 
 function Login({ onLogin }) {
   const navigate = useNavigate();
@@ -29,63 +30,87 @@ function Login({ onLogin }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    setError("");
-    setLoading(true);
+  setError("");
+  setLoading(true);
+
+  try {
+    const normalizedEmail = email.trim().toLowerCase();
+
+    if (!normalizedEmail || !password) {
+      throw new Error("Please enter your email and password.");
+    }
+
+    const response = await fetch(
+      `${API_URL}/api/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          password,
+        }),
+      }
+    );
+
+    let data = {};
 
     try {
-      const response = await fetch(
-        "https://ruin-sorrowful-hippopotamus.abasthan.app/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Login failed");
-      }
-
-      // Save authentication token
-      localStorage.setItem("authToken", data.token);
-
-      // Remove old token if it exists
-      localStorage.removeItem("token");
-
-      // Save user information
-      if (data.user) {
-        localStorage.setItem(
-          "user",
-          JSON.stringify(data.user)
-        );
-      }
-
-      // Update application state
-      if (typeof onLogin === "function") {
-        onLogin(data.user);
-      }
-
-      // Go to dashboard/home
-      navigate("/", { replace: true });
-    } catch (err) {
-      console.error("Login error:", err);
-
-      setError(
-        err.message || "Unable to login. Please try again."
-      );
-    } finally {
-      setLoading(false);
+      data = await response.json();
+    } catch {
+      data = {};
     }
-  };
+
+    if (!response.ok) {
+      throw new Error(
+        data.message || "Login failed"
+      );
+    }
+
+    if (!data.token) {
+      throw new Error(
+        "Login succeeded but no authentication token was returned."
+      );
+    }
+
+    // Save authentication token
+    localStorage.setItem(
+      "authToken",
+      data.token
+    );
+
+    // Remove old token if it exists
+    localStorage.removeItem("token");
+
+    // Save user information
+    if (data.user) {
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data.user)
+      );
+    }
+
+    // Update application state
+    if (typeof onLogin === "function") {
+      onLogin(data.user, data.token);
+    }
+
+    // Go to dashboard/home
+    navigate("/", { replace: true });
+  } catch (err) {
+    console.error("Login error:", err);
+
+    setError(
+      err.message ||
+        "Unable to login. Please try again."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   /* =========================
      LANDING PAGE

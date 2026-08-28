@@ -2,7 +2,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-
+import API_URL from "../api";
 function MyLeave() {
   const [requests, setRequests] =
     useState([]);
@@ -210,7 +210,7 @@ function MyLeave() {
 
       const response =
         await fetch(
-          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests",
+          `${API_URL}/api/leave-requests`,
           {
             method: "GET",
 
@@ -274,7 +274,7 @@ function MyLeave() {
 
         const response =
           await fetch(
-            "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-types",
+            `${API_URL}/api/leave-types`,
             {
               method: "GET",
 
