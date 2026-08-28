@@ -6,9 +6,7 @@ const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
 const { PrismaNeon } = require("@prisma/adapter-neon");
 const { neonConfig } = require("@neondatabase/serverless");
-const ws = require("ws");
-
-neonConfig.webSocketConstructor = ws;
+neonConfig.poolQueryViaFetch = true;
 // --------------------------------------------------
 // Prisma
 // --------------------------------------------------
