@@ -4,14 +4,13 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
-const { PrismaPg } = require("@prisma/adapter-pg");
+const { PrismaNeon } = require("@prisma/adapter-neon");
 
 // --------------------------------------------------
 // Prisma
 // --------------------------------------------------
-
 const prisma = new PrismaClient({
-  adapter: new PrismaPg({
+  adapter: new PrismaNeon({
     connectionString: process.env.DATABASE_URL,
   }),
 });
