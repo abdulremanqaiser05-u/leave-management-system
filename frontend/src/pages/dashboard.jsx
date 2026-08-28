@@ -38,7 +38,7 @@ function Dashboard({ user }) {
         // =====================================================
 
         const balanceResponse = await fetch(
-          "http://localhost:5000/api/leave-requests/balance",
+          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests/balance",
           {
             method: "GET",
             headers,
@@ -64,7 +64,7 @@ function Dashboard({ user }) {
         // =====================================================
 
         const requestsResponse = await fetch(
-          "http://localhost:5000/api/leave-requests",
+          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests",
           {
             method: "GET",
             headers,
@@ -90,7 +90,7 @@ function Dashboard({ user }) {
         // =====================================================
 
         const teamResponse = await fetch(
-          "http://localhost:5000/api/users",
+          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/users",
           {
             method: "GET",
             headers,

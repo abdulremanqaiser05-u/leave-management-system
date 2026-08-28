@@ -74,7 +74,7 @@ function Dashboard({ user }) {
 
           const balanceResponse =
             await fetch(
-              "http://localhost:5000/api/leave-requests/balance",
+              "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests/balance",
               {
                 headers: {
                   Authorization:
@@ -137,7 +137,7 @@ function Dashboard({ user }) {
 
           const requestsResponse =
             await fetch(
-              "http://localhost:5000/api/leave-requests",
+              "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests",
               {
                 headers: {
                   Authorization:
@@ -1185,7 +1185,7 @@ const [notifications, setNotifications] =
         }
 
         const response = await fetch(
-          "http://localhost:5000/api/leave-requests",
+          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests",
           {
             headers: {
               Authorization: `Bearer ${authToken}`,

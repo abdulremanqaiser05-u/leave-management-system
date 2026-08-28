@@ -56,7 +56,7 @@ function Team() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/users",
+        "https://ruin-sorrowful-hippopotamus.abasthan.app/api/users",
         {
           method: "GET",
           headers: {
@@ -205,7 +205,7 @@ function Team() {
 
       const response =
         await fetch(
-          "http://localhost:5000/api/users",
+          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/users",
           {
             method: "POST",
 
@@ -319,7 +319,7 @@ function Team() {
 
       const response =
         await fetch(
-          `http://localhost:5000/api/users/${member.id}`,
+          `https://ruin-sorrowful-hippopotamus.abasthan.app/api/users/${member.id}`,
           {
             method: "DELETE",
 

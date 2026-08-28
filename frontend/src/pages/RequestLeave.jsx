@@ -36,7 +36,7 @@ const [endDate, setEndDate] = useState(null);
         }
 
         const response = await fetch(
-          "http://localhost:5000/api/leave-types",
+          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-types",
           {
             method: "GET",
             headers: {
@@ -242,7 +242,7 @@ const [endDate, setEndDate] = useState(null);
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/leave-requests",
+        "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests",
         {
           method: "POST",
 

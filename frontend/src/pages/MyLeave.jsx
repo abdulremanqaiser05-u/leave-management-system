@@ -210,7 +210,7 @@ function MyLeave() {
 
       const response =
         await fetch(
-          "http://localhost:5000/api/leave-requests",
+          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-requests",
           {
             method: "GET",
 
@@ -274,7 +274,7 @@ function MyLeave() {
 
         const response =
           await fetch(
-            "http://localhost:5000/api/leave-types",
+            "https://ruin-sorrowful-hippopotamus.abasthan.app/api/leave-types",
             {
               method: "GET",
 

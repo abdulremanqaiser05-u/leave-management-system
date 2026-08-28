@@ -67,7 +67,7 @@ function Requests() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/admin/leave-requests",
+        "https://ruin-sorrowful-hippopotamus.abasthan.app/api/admin/leave-requests",
         {
           method: "GET",
           headers: {
@@ -131,7 +131,7 @@ function Requests() {
       }
 
       const response = await fetch(
-        `http://localhost:5000/api/admin/leave-requests/${id}/${action}`,
+        `https://ruin-sorrowful-hippopotamus.abasthan.app/api/admin/leave-requests/${id}/${action}`,
         {
           method: "PATCH",
           headers: {

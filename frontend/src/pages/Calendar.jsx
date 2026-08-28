@@ -38,7 +38,7 @@ function Calendar() {
         }
 
         const response = await fetch(
-          "http://localhost:5000/api/calendar",
+          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/calendar",
           {
             method: "GET",
             headers: {
