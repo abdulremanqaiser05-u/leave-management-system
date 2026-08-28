@@ -5,7 +5,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
 const { PrismaNeon } = require("@prisma/adapter-neon");
+const { neonConfig } = require("@neondatabase/serverless");
+const ws = require("ws");
 
+neonConfig.webSocketConstructor = ws;
 // --------------------------------------------------
 // Prisma
 // --------------------------------------------------
@@ -14,7 +17,7 @@ const prisma = new PrismaClient({
     connectionString: process.env.DATABASE_URL,
   }),
 });
-
+  
 // --------------------------------------------------
 // POST /api/auth/login
 // --------------------------------------------------
