@@ -28,11 +28,11 @@ const PORT = process.env.PORT || 5000;
 // --------------------------------------------------
 // Middleware
 // --------------------------------------------------
-
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
   "https://leave-management-system-git-main-abdul-rehman-7c13.vercel.app",
+  "https://leave-management-system-8ryo3k6yk-abdul-rehman-7c13.vercel.app",
 ];
 
 if (process.env.FRONTEND_URL) {
