@@ -118,36 +118,7 @@ app.use("/api/calendar", calendarRouter);
 
 // Leave balances
 app.use("/api/leave-balances", leaveBalancesRouter);
-app.get("/debug-db", async (req, res) => {
-  try {
-    const { Client } = require("pg");
 
-    const client = new Client({
-      connectionString: process.env.DATABASE_URL,
-      connectionTimeoutMillis: 10000,
-    });
-
-    await client.connect();
-
-    const result = await client.query("SELECT NOW()");
-
-    await client.end();
-
-    res.json({
-      success: true,
-      database: "connected",
-      time: result.rows[0].now,
-    });
-  } catch (error) {
-    console.error("DEBUG DB ERROR:", error);
-
-    res.status(500).json({
-      success: false,
-      error: error.message,
-      code: error.code || null,
-    });
-  }
-});
 // --------------------------------------------------
 // 404 handler
 // --------------------------------------------------
@@ -186,7 +157,7 @@ app.use((err, req, res, next) => {
 // Start server
 // --------------------------------------------------
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log("=================================");
   console.log(`🚀 LeaveFlow backend running`);
   console.log(`📡 Port: ${PORT}`);
