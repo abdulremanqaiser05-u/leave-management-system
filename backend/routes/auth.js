@@ -4,14 +4,12 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
-const { PrismaNeon } = require("@prisma/adapter-neon");
-const { neonConfig } = require("@neondatabase/serverless");
-neonConfig.poolQueryViaFetch = true;
+const { PrismaPg } = require("@prisma/adapter-pg");
 // --------------------------------------------------
 // Prisma
 // --------------------------------------------------
 const prisma = new PrismaClient({
-  adapter: new PrismaNeon({
+  adapter: new PrismaPg({
     connectionString: process.env.DATABASE_URL,
   }),
 });
