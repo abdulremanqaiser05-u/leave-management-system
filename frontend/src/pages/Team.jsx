@@ -206,7 +206,7 @@ function Team() {
 
       const response =
         await fetch(
-          "https://ruin-sorrowful-hippopotamus.abasthan.app/api/users",
+          `${API_URL}/api/users`,
           {
             method: "POST",
 
